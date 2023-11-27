@@ -1,0 +1,29 @@
+{% extends 'iot_device/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Measurements for {{ device.name }}</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for measurement in measurements %}
+            <tr>
+                <td>{{ measurement.timestamp }}</td>
+                <td>
+                    {% for value in measurement.values %}
+                    {{ value }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="2">No measurements found for this device.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

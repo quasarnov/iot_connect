@@ -1,0 +1,12 @@
+{% extends 'iot_device/base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="container">
+    <h2>{% if device_id %}Edit Device{% else %}Add a New Device{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock %}
